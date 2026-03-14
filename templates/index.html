@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Processing System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Resume Processing System</h1>
+        <p class="subtitle">Upload resumes from ZIP files, Google Drive, or individual files</p>
+        
+        <div class="input-sections">
+            <!-- Section 1: ZIP Upload -->
+            <div class="input-section">
+                <h2>Section 1: Upload ZIP File</h2>
+                <p class="section-description">Upload a ZIP archive containing multiple resume files</p>
+                <form id="zipForm" class="upload-form">
+                    <label for="zipFile" class="form-label">Select ZIP File:</label>
+                    <input type="file" id="zipFile" name="zipFile" accept=".zip" required>
+                    <button type="submit" class="btn btn-primary">Upload ZIP</button>
+                </form>
+            </div>
+            
+            <!-- Section 2: Google Drive Folder Link -->
+            <div class="input-section">
+                <h2>Section 2: Google Drive Folder</h2>
+                <p class="section-description">Provide a link to a Google Drive folder containing resumes</p>
+                <form id="driveForm" class="upload-form">
+                    <label for="driveLink" class="form-label">Google Drive Folder Link:</label>
+                    <input type="text" id="driveLink" name="driveLink" placeholder="https://drive.google.com/drive/folders/..." required>
+                    <button type="submit" class="btn btn-primary">Process Google Drive</button>
+                </form>
+            </div>
+            
+            <!-- Section 3: Single Resume File Upload -->
+            <div class="input-section">
+                <h2>Section 3: Upload Single Resume</h2>
+                <p class="section-description">Upload a single resume file (PDF or DOCX)</p>
+                <form id="singleForm" class="upload-form">
+                    <label for="singleFile" class="form-label">Select Resume File:</label>
+                    <input type="file" id="singleFile" name="singleFile" accept=".pdf,.docx" required>
+                    <button type="submit" class="btn btn-primary">Upload Resume</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Results Section -->
+        <div class="results-section">
+            <div class="results-header">
+                <h2>Results</h2>
+                <button id="clearBtn" class="btn btn-secondary" style="display: none;">Clear Results</button>
+            </div>
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Processing your resumes...</p>
+            </div>
+            <div id="error" class="error" style="display: none;"></div>
+            <div id="resultsTable" class="results-placeholder">
+                <p>Results will appear here after processing</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
